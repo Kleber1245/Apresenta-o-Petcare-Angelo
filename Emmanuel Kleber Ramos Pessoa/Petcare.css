@@ -1,0 +1,612 @@
+/* GLOBAL STYLES */
+/* Adiciona box-sizing globalmente para melhor controle do layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    color: #333;
+    line-height: 1.7;
+    /* Alteração para o fundo da página */
+    background-image: url('gift(3).gif'); /* Define a imagem GIF como fundo */
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+    background-attachment: fixed; /* Fixa a imagem no fundo, sem rolar com o conteúdo */
+    background-position: center center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    
+    padding: 0 20%; 
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #fff; /* Retorna ao branco original */
+    border-radius: 8px; /* Menos arredondado que antes */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER SECTION */
+header {
+    padding: 50px 0;
+    text-align: center;
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: #fff; /* Retorna ao branco original */
+}
+
+header .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+header .logo img {
+    height: 80px; 
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-size: 3em; 
+    color: #333; 
+    margin-bottom: 8px;
+    letter-spacing: -0.02em; 
+}
+
+header .tagline {
+    font-size: 1.2em; 
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+/* NAVIGATION SECTION */
+nav {
+    background-color: #333; /* Cor ao redor dos botões (fundo da nav) cinza escuro */
+    padding: 10px 0; 
+    text-align: center;
+    border-radius: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px; 
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 4px 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px; 
+    border-radius: 20px; /* Levemente arredondado */
+    background-color: #555; /* Cinza médio para os botões da nav */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    font-size: 0.8em; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 25px; 
+    height: 25px; 
+    line-height: 0;
+}
+
+nav ul li a:hover {
+    background-color: #777; /* Cinza um pouco mais claro no hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* MAIN CONTENT SECTIONS */
+main {
+    padding-bottom: 60px;
+    background-color: #fff; /* Retorna ao branco original */
+    border-radius: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.sobre-app {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #fff; /* Retorna ao branco original */
+    border-radius: 0;
+}
+
+.sobre-app h2 {
+    font-size: 2.5em; 
+    color: #333;
+    margin-bottom: 30px;
+    letter-spacing: -0.01em;
+}
+
+.sobre-app p {
+    font-size: 1.1em; 
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    padding: 0 80px;
+    text-align: center; 
+}
+
+.feature-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; 
+    margin-top: 40px;
+    padding: 15px;
+}
+
+.feature-card {
+    background-color: #fff; /* Retorna ao branco original */
+    border-radius: 10px; 
+    padding: 25px;
+    text-align: center; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: 380px; /* Largura ajustada para acomodar o calendário e a imagem maior */
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+}
+
+/* Estilo para a imagem dentro do feature-card */
+.feature-card img {
+    max-width: 100%; /* Garante que a imagem não transborde o card */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 15px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    transition: transform 0.3s ease-in-out; /* Adiciona transição para o efeito de zoom */
+}
+
+/* Aumento de 20% no tamanho da imagem "Nosso Espaço.jpg" */
+.feature-card img[src="Nosso Espaço.jpg"] {
+    transform: scale(1.4); /* Aumenta a imagem em 40% (1.4 vezes o tamanho original) */
+}
+
+.feature-card h3 {
+    font-size: 1.4em; 
+    color: #333;
+    margin-bottom: 12px; 
+    text-align: center;
+}
+
+.feature-card p {
+    font-size: 1.05em; 
+    color: #666;
+    line-height: 1.6;
+    text-align: left; 
+    width: 100%; 
+    padding: 0 5px; 
+    /* Removido box-sizing: border-box; aqui para evitar redundância com o global */
+}
+
+/* Ajuste específico para o texto do lembrete, removendo o margin-top inline do HTML */
+.feature-card .reminder-tip {
+    margin-top: 0; /* Remove o margin-top que estava sendo aplicado inline */
+    margin-bottom: 15px; /* Adiciona um espaço abaixo do texto e acima do calendário */
+}
+
+/* CALL TO ACTION SECTION */
+.cta {
+    background-color: #f8f8f8; 
+    padding: 60px 0; 
+    text-align: center;
+    border-radius: 0;
+    margin-top: 60px;
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.03); 
+}
+
+.cta h2 {
+    font-size: 3em; 
+    color: #333;
+    margin-bottom: 30px; 
+    letter-spacing: -0.02em;
+}
+
+.cta p {
+    font-size: 1.2em; 
+    color: #555;
+    margin-bottom: 40px; 
+    text-align: center;
+    padding: 0 40px;
+}
+
+.app-links-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+    padding: 10px; 
+    border-radius: 15px; 
+    background: transparent; 
+    box-shadow: none; 
+    backdrop-filter: none; 
+}
+
+.app-links {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.app-links:hover {
+    transform: scale(1.08); 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15); 
+}
+
+.app-links img {
+    height: 60px; 
+}
+
+.google-play img,
+.app-store img {
+    height: 50px; 
+    width: auto;
+}
+
+/* FOOTER SECTION */
+footer {
+    background-color: #444; 
+    color: #ccc; 
+    text-align: center;
+    padding: 35px 0; 
+    font-size: 0.85em;
+    border-top: 1px solid #666; 
+    margin-top: 0;
+}
+
+footer p {
+    margin-bottom: 15px;
+    text-align: center; 
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+}
+
+.social-links a {
+    display: inline-block;
+    color: #333; /* Define a cor dos links sociais para cinza escuro */
+    opacity: 1; /* Garante que a opacidade seja 1 para visibilidade total */
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-links a:hover {
+    opacity: 1; /* Mantém a opacidade total no hover */
+    transform: scale(1.1); 
+}
+
+.social-links a img {
+    height: 35px; 
+}
+
+/* === CALENDAR EMBEDDED STYLES (Specific overrides for calendar within feature-card) === */
+.feature-card .calendar-container { 
+    box-shadow: none; 
+    padding: 0; 
+    width: 100%; 
+    max-width: 300px; /* Mantém a largura máxima para o calendário dentro do card */
+    margin-top: 15px; /* Espaço entre o texto e o calendário */
+    background-color: #333; /* Garante que o fundo do calendário no card seja escuro */
+    border-radius: 12px; /* Garante que o calendário dentro do card tenha seus cantos arredondados */
+}
+
+/* Estes estilos garantem que os elementos internos do calendário sigam o design escuro do calendario.css
+   mas se ajustem ao espaço e contexto do feature-card. */
+.feature-card .calendar-header {
+    margin-bottom: 15px; 
+    padding-bottom: 8px;
+    border-bottom: 1px solid #555; /* Borda mais escura */
+}
+
+.feature-card .calendar-header h2 {
+    font-size: 1.5em; 
+    color: #f0f0f0; /* Texto quase branco */
+}
+
+.feature-card .nav-btn {
+    padding: 7px 11px; 
+    font-size: 0.95em;
+    background-color: #555; /* Cinza médio para os botões */
+    color: white;
+}
+
+.feature-card .nav-btn:hover {
+    background-color: #666; /* Cinza um pouco mais claro no hover */
+}
+
+.feature-card .calendar-weekdays {
+    gap: 5px;
+    margin-bottom: 10px;
+    color: #bbb; /* Cinza claro */
+}
+
+.feature-card .calendar-weekdays div {
+    background-color: #444; /* Fundo cinza escuro para dias da semana */
+}
+
+.feature-card .calendar-days {
+    gap: 5px;
+}
+
+.feature-card .calendar-days div {
+    font-size: 0.9em;
+    border-radius: 7px;
+    color: #e0e0e0; /* Texto claro para os dias */
+    background-color: #3a3a3a; /* Fundo ligeiramente mais claro que o container */
+}
+
+.feature-card .calendar-days div:hover {
+    background-color: #4CAF50; /* Verde PetCare para o hover */
+    color: white;
+}
+
+.feature-card .calendar-days div.holiday-weekend {
+    background-color: #2a2a2a; /* Cinza mais escuro */
+    color: #FF7043; /* Laranja para destaque */
+}
+
+.feature-card .calendar-days div.today {
+    background-color: #4CAF50; /* Verde PetCare para o dia atual */
+    color: white;
+    border: 2px solid #81C784; /* Borda verde claro */
+}
+
+/* NEW STYLES FOR CALENDAR EVENTS (lembretes and agendamentos) */
+.calendar-days div.has-event {
+    border: 2px solid #2196F3; /* Borda azul para indicar evento (agendamento/lembrete) */
+    box-shadow: 0 0 8px rgba(33, 150, 243, 0.6); /* Sombra sutil para destaque */
+}
+
+.calendar-days div.has-event.today {
+    border-color: #f0f0f0; /* Borda branca se for hoje e tiver evento */
+    background-color: #4CAF50; /* Mantém o verde do "today" */
+    color: white;
+}
+
+/* STYLES FOR THE MODAL (Popup for event details) */
+.modal-overlay { /* Nova classe para o overlay, mais fácil de estilizar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content { /* Nova classe para o conteúdo do modal */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
+}
+
+.modal-body-scrollable { /* Nova classe para a parte scrollable dentro do modal */
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 70vh; /* Limita a altura para ser scrollable se muitos eventos */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for grande */
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+/* Styles for event items within the modal */
+.modal-body-scrollable div[style*="border-left"] { /* Seleciona os itens de evento dentro do modal */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.modal-body-scrollable h3 {
+    color: #4CAF50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-body-scrollable h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.modal-body-scrollable ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.modal-body-scrollable li {
+    margin-bottom: 5px; /* Espaçamento entre itens da lista */
+}
+
+.modal-body-scrollable button#closeModal {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-body-scrollable button#closeModal:hover {
+    background-color: #c82333;
+}
+
+
+/* STYLES FOR MASKED INFO & TOGGLE ICON */
+.masked-info {
+    font-weight: bold;
+    color: #555;
+}
+
+.toggle-visibility {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #2196F3; /* Cor do ícone de olho */
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.toggle-visibility:hover {
+    transform: scale(1.1);
+    color: #1976D2; /* Azul mais escuro no hover */
+}
+
+
+/* RESPONSIVE STYLES */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 900px;
+    }
+
+    .sobre-app p {
+        padding: 0 40px;
+    }
+
+    .feature-card {
+        width: 48%; 
+        min-width: 300px; 
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 2%; 
+    }
+
+    header {
+        padding: 40px 0;
+    }
+
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    .sobre-app h2,
+    .cta h2 { 
+        font-size: 2.2em;
+    }
+
+    .sobre-app p,
+    .cta p {
+        padding: 0 15px;
+        font-size: 1em;
+    }
+
+    nav ul {
+        flex-direction: column; 
+        align-items: center;
+        gap: 8px;
+    }
+
+    nav ul li a {
+        width: 80%; 
+        max-width: 150px;
+        height: auto;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .feature-card {
+        width: 95%; 
+        margin: 15px auto;
+        padding: 20px;
+    }
+
+    .app-links-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .feature-card p {
+        padding: 0; 
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    .sobre-app h2,
+    .cta h2 { 
+        font-size: 1.8em;
+    }
+
+    .feature-card h3 {
+        font-size: 1.2em;
+    }
+    
+    .feature-card p {
+        font-size: 0.95em;
+    }
+
+    .app-links img {
+        height: 50px;
+    }
+
+    .google-play img, .app-store img {
+        height: 40px;
+    }
+
+    /* Ajustes para o modal em telas muito pequenas */
+    .modal-content {
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    .modal-body-scrollable {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare - Seu App de Cuidado Animal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Petcare.css">
+    <link rel="stylesheet" href="calendario.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+            <li><a href="Sobre Nós.html">Sobre Nós</a></li>
+        </ul>
+    </nav>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="Logo.jpg" alt="PetCare Logo">
+                <h1>PetCare</h1>
+            </div>
+            <p class="tagline">Cuidado e carinho para o seu pet, na palma da sua mão!</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="sobre-app">
+            <div class="container">
+                <div class="feature-highlights">
+                    <div class="feature-card">
+                        <h3>Nosso Espaço</h3>
+                        <p>Venha conhecer a PetCare! Um ambiente preparado com todo carinho para o seu melhor amigo.</p>
+                        <img src="Nosso Espaço.jpg" alt="Petshop PetCare - Nosso Espaço">
+                    </div>
+
+                    <div class="feature-card">
+                        <h3>Lembretes Personalizados</h3>
+                        <p class="reminder-tip" style="text-align: left; margin-top: 20px; color: #666;">Nunca perca um compromisso ou medicação do seu pet! Clique em um dia para adicionar ou visualizar lembretes e agendamentos.</p>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button id="prevMonth" class="nav-btn">&laquo;</button>
+                                <h2 id="monthYear"></h2>
+                                <button id="nextMonth" class="nav-btn">&raquo;</button>
+                            </div>
+                            <div class="calendar-weekdays">
+                                <div>Dom</div>
+                                <div>Seg</div>
+                                <div>Ter</div>
+                                <div>Qua</div>
+                                <div>Qui</div>
+                                <div>Sex</div>
+                                <div>Sáb</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2>Sobre o PetCare</h2>
+                <p>O PetCare é o aplicativo perfeito para tutores de animais de estimação. Oferecemos uma variedade de recursos para facilitar o cuidado com seus companheiros peludos, desde agendamento de serviços até dicas de bem-estar e acompanhamento da saúde.</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Baixe agora!</h2>
+                <p>Experimente a melhor forma de cuidar do seu pet.</p>
+                <div class="app-links-container">
+                    <a href="https://play.google.com/store/apps?hl=pt_BR&gl=US" target="_blank" class="app-store-link google-play">
+                        <img src="https://placehold.co/100x50/white/gray?text=Google+Play" onerror="this.src='Play store.jfif'" alt="Disponível no Google Play">
+                    </a>
+                    <a href="https://www.apple.com/br/app-store/" target="_blank" class="app-store-link app-store">
+                        <img src="https://placehold.co/100x50/white/gray?text=App+Store" onerror="this.src='Apple Store.png'" alt="Disponível na App Store">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PetCare. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/" target="_blank"><img src="https://placehold.co/35x35/white/gray?text=FB" onerror="this.src='facebook-icon.png'" alt="Facebook"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="https://placehold.co/35x35/white/gray?text=IG" onerror="this.src='instagram-icon.png'" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scripts de transição para os links da app store (mantidos como estavam)
+        document.querySelectorAll('.app-store-link').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                link.style.transform = 'scale(1.05)';
+                link.style.transition = 'transform 0.2s ease-in-out';
+            });
+            link.addEventListener('mouseout', () => {
+                link.style.transform = 'scale(1)';
+                link.style.transition = 'transform 0.2s ease-in-out';
+            });
+        });
+
+        // Script completo do calendário e funcionalidade de lembretes
+        document.addEventListener('DOMContentLoaded', () => {
+            const monthYearDisplay = document.getElementById('monthYear');
+            const prevMonthBtn = document.getElementById('prevMonth');
+            const nextMonthBtn = document.getElementById('nextMonth');
+            const calendarDays = document.getElementById('calendarDays');
+
+            let currentMonth = new Date().getMonth();
+            let currentYear = 2025; // Ano fixo para 2025
+
+            // Armazenamento de lembretes (usaremos localStorage para persistência básica)
+            let reminders = JSON.parse(localStorage.getItem('petcareReminders')) || {};
+            // Armazenamento de agendamentos
+            let agendamentos = JSON.parse(localStorage.getItem('petcareAgendamentos')) || [];
+
+            const monthNames = [
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+            ];
+
+            // Feriados Nacionais do Brasil em 2025 (formato: "MM-DD")
+            const holidays2025 = new Set([
+                "01-01", // Confraternização Universal
+                "03-03", // Carnaval
+                "03-04", // Carnaval
+                "03-05", // Quarta-feira de Cinzas
+                "04-18", // Paixão de Cristo (Sexta-feira Santa)
+                "04-21", // Tiradentes
+                "05-01", // Dia do Trabalho
+                "06-19", // Corpus Christi
+                "09-07", // Independência do Brasil
+                "10-12", // Nossa Senhora Aparecida
+                "11-02", // Finados
+                "11-15", // Proclamação da República
+                "11-20", // Dia Nacional de Zumbi e da Consciência Negra
+                "12-25"  // Natal
+            ]);
+
+            function saveReminders() {
+                localStorage.setItem('petcareReminders', JSON.stringify(reminders));
+            }
+
+            // A função saveAgendamentos não é estritamente necessária aqui, pois os agendamentos são salvos no Agendamentos.html
+            // Mas é bom ter uma função separada se você for adicionar remoção/edição no futuro.
+            function saveAgendamentos() {
+                localStorage.setItem('petcareAgendamentos', JSON.stringify(agendamentos));
+            }
+
+            // Função para validar formato de data MM-DD-AAAA
+            function isValidDateString(dateString) {
+                const regex = /^(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])-(202[5]|20[3-9][0-9]|[2-9][0-9]{3})$/;
+                if (!regex.test(dateString)) return false;
+
+                const parts = dateString.split('-');
+                const month = parseInt(parts[0], 10);
+                const day = parseInt(parts[1], 10);
+                const year = parseInt(parts[2], 10);
+
+                const date = new Date(year, month - 1, day);
+                return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+            }
+
+            function addReminder(selectedDateKey) {
+                const reminderText = prompt(`Adicionar lembrete para ${selectedDateKey}:\n(Ex: Banho do Rex)`);
+                if (!reminderText) return;
+
+                let startDate = prompt(`Data de INÍCIO do lembrete (MM-DD-AAAA):\n(Ex: 05-29-2025)`, selectedDateKey);
+                if (!startDate || !isValidDateString(startDate)) {
+                    alert("Data de início inválida ou formato incorreto. O lembrete será adicionado apenas para o dia clicado.");
+                    startDate = selectedDateKey; // Usa a data clicada como início
+                }
+
+                let endDate = prompt(`Data de FIM do lembrete (MM-DD-AAAA):\n(Deixe em branco para lembrete de um dia só)`);
+                if (!endDate || !isValidDateString(endDate)) {
+                    endDate = startDate; // Se não for fornecida ou for inválida, é um lembrete de um dia
+                }
+
+                const newReminder = {
+                    type: 'lembrete', // Identifica como lembrete
+                    text: reminderText,
+                    start: startDate,
+                    end: endDate
+                };
+
+                // Converte as strings de data para objetos Date para comparação
+                const sDateParts = startDate.split('-');
+                const sDate = new Date(parseInt(sDateParts[2]), parseInt(sDateParts[0]) - 1, parseInt(sDateParts[1]));
+
+                const eDateParts = endDate.split('-');
+                const eDate = new Date(parseInt(eDateParts[2]), parseInt(eDateParts[0]) - 1, parseInt(eDateParts[1]));
+
+                if (sDate > eDate) {
+                    alert("A data de início não pode ser posterior à data de fim. Lembrete não adicionado.");
+                    return;
+                }
+
+                // Loop para adicionar o lembrete a cada dia no intervalo
+                for (let d = new Date(sDate); d <= eDate; d.setDate(d.getDate() + 1)) {
+                    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+                    const day = d.getDate().toString().padStart(2, '0');
+                    const year = d.getFullYear();
+                    const key = `${month}-${day}-${year}`;
+
+                    if (!reminders[key]) {
+                        reminders[key] = [];
+                    }
+                    const exists = reminders[key].some(r => 
+                        r.text === newReminder.text && r.start === newReminder.start && r.end === newReminder.end
+                    );
+                    if (!exists) {
+                        reminders[key].push(newReminder);
+                    }
+                }
+                saveReminders();
+                renderCalendar(); 
+            }
+
+            function viewItems(dateKey) {
+                const itemsForDay = [];
+                // Adiciona lembretes
+                if (reminders[dateKey]) {
+                    itemsForDay.push(...reminders[dateKey]);
+                }
+                // Adiciona agendamentos para este dia
+                const agendamentosForDay = agendamentos.filter(a => a.dateKey === dateKey);
+                itemsForDay.push(...agendamentosForDay);
+
+                if (itemsForDay.length > 0) {
+                    let detailsHtml = `
+                        <div class="modal-body-scrollable">
+                            <h3 style="color: #4CAF50; margin-top: 0; margin-bottom: 20px; text-align: center;">Eventos para ${dateKey}:</h3>
+                    `;
+                    itemsForDay.forEach((item, index) => {
+                        detailsHtml += `
+                            <div style="background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid ${item.type === 'lembrete' ? '#81C784' : '#2196F3'};">
+                                <h4 style="margin-top: 0; color: #333;">${item.type === 'lembrete' ? 'Lembrete' : 'Agendamento'} ${index + 1}: ${item.text}</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95em;">
+                        `;
+
+                        if (item.type === 'lembrete') {
+                            detailsHtml += `
+                                    <li><strong>Início:</strong> ${item.start}</li>
+                                    <li><strong>Fim:</strong> ${item.end}</li>
+                            `;
+                        } else if (item.type === 'agendamento') {
+                            detailsHtml += `
+                                    <li><strong>Tutor:</strong> ${item.details.nomeTutor}</li>
+                                    <li><strong>Pet:</strong> ${item.details.nomePet}</li>
+                                    <li><strong>Serviço:</strong> ${item.details.tipoServico}</li>
+                                    <li><strong>Hora:</strong> ${item.details.horaAgendamento}</li>
+                                    <li><strong>Observações:</strong> ${item.details.observacoes || 'N/A'}</li>
+                                    <li>
+                                        <strong>E-mail:</strong> 
+                                        <span class="masked-info email-masked" data-full="${item.details.emailTutor}">********</span> 
+                                        <i class="fa-solid fa-eye toggle-visibility" data-target="email-masked"></i>
+                                    </li>
+                                    <li>
+                                        <strong>Telefone:</strong> 
+                                        <span class="masked-info phone-masked" data-full="${item.details.telefoneTutor}">********</span> 
+                                        <i class="fa-solid fa-eye toggle-visibility" data-target="phone-masked"></i>
+                                    </li>
+                            `;
+                        }
+                        detailsHtml += `
+                                </ul>
+                            </div>
+                        `;
+                    });
+                    detailsHtml += `</div>`;
+
+                    // Criar uma div customizada para o modal de visualização.
+                    const modalOverlay = document.createElement('div');
+                    modalOverlay.classList.add('modal-overlay'); // Adiciona a classe do CSS
+                    modalOverlay.innerHTML = `
+                        <div class="modal-content">
+                            ${detailsHtml}
+                            <button id="closeModal" style="background-color: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1em; margin-top: 20px;">Fechar</button>
+                        </div>
+                    `;
+                    document.body.appendChild(modalOverlay);
+
+                    // Adicionar event listener para o botão de fechar
+                    document.getElementById('closeModal').addEventListener('click', () => {
+                        document.body.removeChild(modalOverlay);
+                    });
+
+                    // Adicionar event listeners para os toggles de visibilidade
+                    modalOverlay.querySelectorAll('.toggle-visibility').forEach(icon => {
+                        icon.addEventListener('click', () => {
+                            const targetClass = icon.dataset.target;
+                            const maskedSpan = modalOverlay.querySelector(`.${targetClass}`);
+                            const fullText = maskedSpan.dataset.full;
+
+                            if (maskedSpan.textContent === '********') {
+                                maskedSpan.textContent = fullText;
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            } else {
+                                maskedSpan.textContent = '********';
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            }
+                        });
+                    });
+
+                } else {
+                    alert(`Não há lembretes ou agendamentos para ${dateKey}.`);
+                }
+            }
+
+
+            function renderCalendar() {
+                calendarDays.innerHTML = ''; // Limpa os dias anteriores
+                monthYearDisplay.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+                const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay(); 
+                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate(); 
+
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.classList.add('empty');
+                    calendarDays.appendChild(emptyDiv);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayDiv = document.createElement('div');
+                    const daySpan = document.createElement('span'); 
+                    daySpan.textContent = day;
+                    dayDiv.appendChild(daySpan); 
+                    
+                    const currentDate = new Date(currentYear, currentMonth, day);
+                    const dayOfWeek = currentDate.getDay(); 
+
+                    const monthStr = (currentMonth + 1).toString().padStart(2, '0');
+                    const dayStr = day.toString().padStart(2, '0');
+                    const dateKey = `${monthStr}-${dayStr}-${currentYear}`; 
+                    const holidayKey = `${monthStr}-${dayStr}`; 
+
+                    // Verifica se o dia tem algum lembrete ou agendamento
+                    const hasReminder = reminders[dateKey] && reminders[dateKey].length > 0;
+                    const hasAgendamento = agendamentos.some(a => a.dateKey === dateKey);
+
+                    if (hasReminder || hasAgendamento) {
+                        dayDiv.classList.add('has-event'); // Nova classe para indicar eventos
+                    }
+
+                    if (dayOfWeek === 0 || dayOfWeek === 6 || holidays2025.has(holidayKey)) {
+                        dayDiv.classList.add('holiday-weekend');
+                    }
+
+                    const today = new Date();
+                    if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                        dayDiv.classList.add('today');
+                    }
+                    
+                    dayDiv.addEventListener('click', () => {
+                        const action = confirm(`Dia ${day}/${monthStr}/${currentYear}.\nDeseja adicionar um lembrete? (Clique em "Cancelar" para ver os eventos existentes.)`);
+                        if (action) {
+                            addReminder(dateKey);
+                        } else {
+                            viewItems(dateKey); // Agora chama viewItems que mostra lembretes e agendamentos
+                        }
+                    });
+
+                    calendarDays.appendChild(dayDiv);
+                }
+            }
+
+            prevMonthBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--; 
+                    if (currentYear < 2025) currentYear = 2025; 
+                }
+                renderCalendar();
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++; 
+                    if (currentYear > 2025) currentYear = 2025; 
+                }
+                renderCalendar();
+            });
+
+            const initialDate = new Date();
+            if (initialDate.getFullYear() !== 2025) {
+                currentMonth = 0; 
+            }
+
+            renderCalendar();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PetCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos globais e de corpo para fundo GIF */
+        body {
+            font-family: 'Poppins', sans-serif; /* Usando Poppins */
+            margin: 0;
+            background-color: #333; /* Cor de fundo cinza escuro de fallback */
+            color: #333;
+            display: flex;
+            flex-direction: column; /* Altera para coluna para a nav ficar no topo */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+
+            /* --- Adicionado para o background GIF --- */
+            background-image: url('gift(3).gif'); /* Caminho para sua imagem GIF */
+            background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o fundo */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Fixa a imagem, para que ela não role com o conteúdo */
+            /* ------------------------------------------------ */
+            padding-top: 0; /* Remove padding-top se necessário para a nav */
+        }
+
+        /* Container do formulário de login */
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 96%;
+            max-width: 480px;
+            text-align: center;
+            margin-top: 20px; /* Espaço para a nav */
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+
+        .google-login-button {
+            background-color: #db4437;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .google-login-button:hover {
+            background-color: #c53929;
+        }
+
+        .google-icon {
+            font-size: 1.2em;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #777;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .separator:not(:empty)::before {
+            margin-right: .25em;
+        }
+
+        .separator:not(:empty)::after {
+            margin-left: .25em;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* --- Estilos da Navegação (copiado de Petcare.css) --- */
+        nav {
+            background-color: #333; /* Cor ao redor dos botões (fundo da nav) cinza escuro */
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%; /* Para a nav ocupar toda a largura */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%;
+            }
+            .login-container {
+                width: 90%;
+                padding: 20px;
+            }
+            /* Ajustes responsivos para a nav */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 15px;
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+        </ul>
+    </nav>
+
+    <div class="login-container">
+        <div class="logo">
+            <img src="Logo.jpg" alt="Logo da Petcare">
+        </div>
+
+        <h1>Login</h1>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="separator">OU</div>
+
+        <button class="google-login-button">
+            <span class="google-icon">G</span>
+            <span>Continuar com o Google</span>
+        </button>
+
+        <div class="signup-link">
+            Não tem uma conta? <a href="/cadastro">Cadastre-se</a>
+        </div>
+
+        <div id="loginError" class="error-message" style="display: none;">
+            Credenciais inválidas. Por favor, tente novamente.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginErrorDiv = document.getElementById('loginError');
+            const googleLoginButton = document.querySelector('.google-login-button');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Simulação de envio para o seu sistema de autenticação
+                console.log('Email:', email);
+                console.log('Senha:', password);
+
+                // *** Aqui você precisaria integrar com seu back-end para verificar as credenciais ***
+                // Exemplo de simulação de erro:
+                if (email !== 'teste@email.com' || password !== 'senha123') {
+                    loginErrorDiv.style.display = 'block';
+                } else {
+                    // Redirecionar para a área do usuário após o login bem-sucedido
+                    window.location.href = '/area-do-usuario';
+                }
+            });
+
+            googleLoginButton.addEventListener('click', function() {
+                // *** Aqui você precisaria iniciar o fluxo de autenticação com o Google ***
+                console.log('Iniciar login com o Google');
+                // Geralmente, isso envolve redirecionar o usuário para uma URL fornecida pelo Google.
+                // Você precisará configurar o Google Cloud Platform e obter as credenciais de cliente.
+            });
+        });
+    </script>
+</body>
+</html>

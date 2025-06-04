@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos - Minha Petcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos gerais para o corpo da página */
+        body {
+            font-family: 'Poppins', sans-serif; /* Usando Poppins */
+            margin: 0;
+            background-color: #333; /* Cor de fundo cinza escuro de fallback */
+            color: #333;
+            display: flex; /* Habilita o Flexbox */
+            flex-direction: column; /* Organiza em coluna: nav no topo, depois container */
+            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            align-items: center; /* Centraliza o conteúdo horizontalmente */
+            min-height: 100vh;
+            box-sizing: border-box;
+
+            /* --- Adicionado para o background GIF --- */
+            background-image: url('gift(3).gif'); /* Caminho para sua imagem GIF */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* ------------------------------------------------ */
+            padding-top: 0; /* Garante que não haja padding que interfira na nav */
+        }
+
+        /* Estilos para o contêiner principal */
+        .container {
+            max-width: 800px;
+            width: 90%; /* Ajustado para ser mais responsivo */
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px; /* Espaço para a nav */
+            margin-bottom: 20px; /* Espaço na parte inferior */
+        }
+
+        /* Estilos para o título principal */
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        /* Estilos para seções de contato */
+        .contact-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .contact-section h2 {
+            color: #007bff;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .contact-section p {
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .contact-section p strong {
+            color: #333;
+        }
+
+        .contact-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Estilos da Navegação (copiado de Petcare.css) --- */
+        nav {
+            background-color: #333; /* Cor ao redor dos botões (fundo da nav) cinza escuro */
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%; /* Para a nav ocupar toda a largura */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Estilos de responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%; /* Ajusta o padding para telas menores */
+            }
+            .container {
+                width: 95%; /* Em telas menores, ocupe mais largura para melhor usabilidade */
+                padding: 15px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .contact-section h2 {
+                font-size: 1.3em;
+            }
+            /* Ajustes responsivos para a nav */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .contact-section h2 {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Fale Conosco - Equipe Petcare</h1>
+
+        <div class="contact-section">
+            <h2>Proprietário</h2>
+            <p><strong>Nome:</strong> [Nome do Proprietário]</p>
+            <p><strong>Telefone:</strong> <a href="tel:+55XXYYYY-AAAA">[XX] YYYY-AAAA</a></p>
+            <p><strong>Email:</strong> <a href="mailto:proprietario@suapetcare.com.br">proprietario@suapetcare.com.br</a></p>
+            <p>Para assuntos gerais, parcerias e feedback.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Gerente de Operações</h2>
+            <p><strong>Nome:</strong> [Nome do Gerente]</p>
+            <p><strong>Telefone:</strong> <a href="tel:+55XXZZZZ-BBBB">[XX] ZZZZ-BBBB</a></p>
+            <p><strong>Email:</strong> <a href="mailto:gerencia@suapetcare.com.br">gerencia@suapetcare.com.br</a></p>
+            <p>Para agendamentos, dúvidas sobre serviços e reclamações.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Equipe de Atendimento</h2>
+            <p><strong>Telefone Principal:</strong> <a href="tel:+55XXWWWW-CCCC">[XX] WWWW-CCCC</a></p>
+            <p><strong>Whatsapp:</strong> <a href="https://wa.me/55XXWWWWCCCC" target="_blank">[XX] WWWW-CCCC</a></p>
+            <p><strong>Email:</strong> <a href="mailto:atendimento@suapetcare.com.br">atendimento@suapetcare.com.br</a></p>
+            <p>Para informações sobre banho e tosa, creche e hospedagem.</p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Emergências Veterinárias (Parceiro)</h2>
+            <p><strong>Clínica:</strong> Clínica Veterinária Sempre Saudável</p>
+            <p><strong>Telefone:</strong> <a href="tel:+55XXKKKK-DDDD">[XX] KKKK-DDDD</a></p>
+            <p><strong>Endereço:</strong> Rua da Paz, 123 - Cidade, UF</p>
+            <p>Atendimento 24h. Recomendamos contato prévio.</p>
+        </div>
+
+        <p style="margin-top: 40px; color: #777;">
+            Sua Petcare - Cuidando do seu melhor amigo com carinho!
+        </p>
+    </div>
+</body>
+</html>

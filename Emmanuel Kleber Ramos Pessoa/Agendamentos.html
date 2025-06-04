@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCare - Agendamentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para Agendamentos.html */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column; /* Altera para coluna para a nav ficar no topo */
+            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            background-image: url('gift(3).gif'); /* Mantém o GIF de fundo */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            background-repeat: no-repeat;
+            padding-top: 0; /* Garante que não haja padding que interfira na nav */
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-sizing: border-box;
+            opacity: 0; /* Começa oculto para o fade-in */
+            transform: translateY(20px); /* Começa ligeiramente abaixo */
+            animation: fadeInScale 0.8s ease-out forwards; /* Animação de fade-in e escala */
+            margin-top: 20px; /* Espaço para a nav */
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-size: 2.8em;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            width: calc(100% - 20px); /* Ajuste para padding */
+            padding: 12px 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            color: #333;
+            background-color: #f9f9f9;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        input[type="time"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            color: #388E3C;
+            transform: translateX(-5px);
+        }
+
+        /* --- Estilos da Navegação (copiado de Petcare.css) --- */
+        nav {
+            background-color: #333; /* Cor ao redor dos botões (fundo da nav) cinza escuro */
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%; /* Para a nav ocupar toda a largura */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%; /* Ajusta o padding para telas menores */
+            }
+            .container {
+                padding: 30px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            label {
+                font-size: 1em;
+            }
+
+            input, select, textarea, button {
+                font-size: 0.95em;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+
+            /* Ajustes responsivos para a nav */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Agende seu Serviço</h1>
+        <form id="agendamentoForm">
+            <div class="form-group">
+                <label for="nomeTutor">Nome do Tutor:</label>
+                <input type="text" id="nomeTutor" name="nomeTutor" required>
+            </div>
+            <div class="form-group">
+                <label for="emailTutor">E-mail do Tutor:</label>
+                <input type="email" id="emailTutor" name="emailTutor" required>
+            </div>
+            <div class="form-group">
+                <label for="telefoneTutor">Telefone do Tutor:</label>
+                <input type="tel" id="telefoneTutor" name="telefoneTutor" required>
+            </div>
+            <div class="form-group">
+                <label for="nomePet">Nome do Pet:</label>
+                <input type="text" id="nomePet" name="nomePet" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoServico">Tipo de Serviço:</label>
+                <select id="tipoServico" name="tipoServico" required>
+                    <option value="">Selecione um serviço</option>
+                    <option value="Banho e Tosa">Banho e Tosa</option>
+                    <option value="Consulta Veterinária">Consulta Veterinária</option>
+                    <option value="Vacinação">Vacinação</option>
+                    <option value="Hospedagem">Hospedagem</option>
+                    <option value="Adestramento">Adestramento</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dataAgendamento">Data do Agendamento:</label>
+                <input type="date" id="dataAgendamento" name="dataAgendamento" required>
+            </div>
+            <div class="form-group">
+                <label for="horaAgendamento">Hora do Agendamento:</label>
+                <input type="time" id="horaAgendamento" name="horaAgendamento" required>
+            </div>
+            <div class="form-group">
+                <label for="observacoes">Observações (opcional):</label>
+                <textarea id="observacoes" name="observacoes"></textarea>
+            </div>
+            <button type="submit">Agendar Serviço</button>
+        </form>
+        <a href="Petcare.html" class="back-button">Voltar para a Página Inicial</a>
+    </div>
+
+    <script>
+        document.getElementById('agendamentoForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const nomeTutor = document.getElementById('nomeTutor').value;
+            const emailTutor = document.getElementById('emailTutor').value;
+            const telefoneTutor = document.getElementById('telefoneTutor').value;
+            const nomePet = document.getElementById('nomePet').value;
+            const tipoServico = document.getElementById('tipoServico').value;
+            const dataAgendamento = document.getElementById('dataAgendamento').value;
+            const horaAgendamento = document.getElementById('horaAgendamento').value;
+            const observacoes = document.getElementById('observacoes').value;
+
+            // Formatar a data para MM-DD-AAAA para compatibilidade com o calendário
+            const [ano, mes, dia] = dataAgendamento.split('-');
+            const dataFormatadaParaCalendario = `${mes}-${dia}-${ano}`;
+
+            const novoAgendamento = {
+                type: 'agendamento', // Identifica como agendamento
+                text: `${tipoServico} - ${nomePet} (${nomeTutor})`,
+                details: {
+                    nomeTutor: nomeTutor,
+                    emailTutor: emailTutor,
+                    telefoneTutor: telefoneTutor,
+                    nomePet: nomePet,
+                    tipoServico: tipoServico,
+                    horaAgendamento: horaAgendamento,
+                    observacoes: observacoes
+                },
+                dateKey: dataFormatadaParaCalendario // Chave para o calendário
+            };
+
+            // Recupera agendamentos existentes ou inicializa um array vazio
+            let agendamentos = JSON.parse(localStorage.getItem('petcareAgendamentos')) || [];
+            agendamentos.push(novoAgendamento);
+
+            // Salva os agendamentos atualizados no localStorage
+            localStorage.setItem('petcareAgendamentos', JSON.stringify(agendamentos));
+
+            alert('Serviço agendado com sucesso! Você pode visualizar no calendário da página principal.');
+
+            // Opcional: Limpar o formulário após o envio
+            this.reset();
+        });
+    </script>
+</body>
+</html>

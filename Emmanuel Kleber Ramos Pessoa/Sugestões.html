@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestões</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* Usando Poppins */
+            margin: 0;
+            background-color: #333; /* Fundo cinza escuro de fallback */
+            color: #333;
+            display: flex; /* Para flexbox */
+            flex-direction: column; /* Organiza em coluna: nav no topo, depois container */
+            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            align-items: center; /* Centraliza horizontalmente */
+            min-height: 100vh;
+            box-sizing: border-box;
+
+            /* --- Adicionado para o background GIF --- */
+            background-image: url('gift(3).gif'); /* Caminho para sua imagem GIF */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* ------------------------------------------------ */
+            padding-top: 0; /* Garante que não haja padding que interfira na nav */
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%; /* Ajustado para ser mais responsivo */
+            margin-top: 20px; /* Espaço para a nav */
+            margin-bottom: 20px; /* Espaço na parte inferior */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Para que o botão ocupe a largura total do formulário */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* --- Estilos da Navegação (copiado de Petcare.css) --- */
+        nav {
+            background-color: #333; /* Cor ao redor dos botões (fundo da nav) cinza escuro */
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%; /* Para a nav ocupar toda a largura */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%; /* Ajusta o padding para telas menores */
+            }
+            .container {
+                width: 95%; /* Ocupa mais largura em telas menores */
+                padding: 20px;
+            }
+
+            /* Ajustes responsivos para a nav */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            input[type="text"], textarea, button[type="submit"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Envie sua Sugestão</h1>
+        <form id="suggestionForm">
+            <div class="form-group">
+                <label for="nome">Seu Nome (Opcional):</label>
+                <input type="text" id="nome" name="nome">
+            </div>
+            <div class="form-group">
+                <label for="email">Seu Email (Opcional):</label>
+                <input type="text" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="sugestao">Sua Sugestão:</label>
+                <textarea id="sugestao" name="sugestao" required></textarea>
+            </div>
+            <button type="submit">Enviar Sugestão</button>
+            <div id="mensagem" class=""></div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('suggestionForm');
+            const mensagemDiv = document.getElementById('mensagem');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio padrão do formulário
+
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+                const sugestao = document.getElementById('sugestao').value;
+
+                // Simulação de envio para um servidor (você precisará implementar a lógica real)
+                console.log('Nome:', nome);
+                console.log('Email:', email);
+                console.log('Sugestão:', sugestao);
+
+                // Simulação de resposta bem-sucedida
+                mensagemDiv.textContent = 'Sua sugestão foi enviada com sucesso!';
+                mensagemDiv.className = 'success-message';
+                form.reset(); // Limpa o formulário após o envio
+
+                // Para simular um erro, você poderia descomentar o seguinte:
+                // mensagemDiv.textContent = 'Ocorreu um erro ao enviar sua sugestão.';
+                // mensagemDiv.className = 'error-message';
+            });
+        });
+    </script>
+</body>
+</html>

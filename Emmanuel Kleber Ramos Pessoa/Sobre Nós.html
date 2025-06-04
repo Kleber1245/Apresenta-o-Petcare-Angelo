@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - PetShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Petcare.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para a página Sobre Nós */
+        body {
+            background-image: url('gift(4).gif'); /* Mantém o mesmo background */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 50px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            background-color: #fff;
+        }
+
+        header .logo img {
+            height: 80px;
+            margin-bottom: 10px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            font-weight: 600;
+        }
+
+        header .tagline {
+            font-size: 1.2em;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 0;
+            max-width: none;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        main {
+            padding: 60px 20px; /* Ajuste para o padding do conteúdo principal */
+            background-color: #fff;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .about-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px; /* Largura máxima para o conteúdo */
+            text-align: center; /* Centraliza o texto */
+        }
+
+        .about-section h2 {
+            font-size: 2.8em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify; /* Justifica o texto para melhor leitura */
+        }
+
+        .about-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: block; /* Garante que a imagem seja um bloco para aplicar margem auto */
+            margin-left: auto; /* Centraliza a imagem */
+            margin-right: auto; /* Centraliza a imagem */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 15px;
+            }
+
+            .about-section {
+                padding: 25px;
+            }
+
+            .about-section h2 {
+                font-size: 2.2em;
+                margin-bottom: 20px;
+            }
+
+            .about-section p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-section h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        footer {
+            background-color: #444;
+            color: #ccc;
+            text-align: center;
+            padding: 35px 0;
+            font-size: 0.85em;
+            border-top: 1px solid #666;
+            margin-top: 0;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: #333;
+            opacity: 1;
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .social-links img {
+            height: 35px;
+            filter: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="Produtos.html">Produtos</a></li>
+                <li><a href="Serviços.html">Serviço</a></li>
+                <li><a href="Agendamentos.html">Agendamento</a></li>
+                <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+                <li><a href="Sugestões.html">Sugestões</a></li>
+                <li><a href="Contatos.html">Contatos</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+                <li><a href="Sobre_Nos.html">Sobre Nós</a></li> </ul>
+        </nav>
+
+        <header>
+            <div class="logo">
+                <img src="Logo.jpg" alt="Logotipo PetShop">
+                <h1>PetShop</h1>
+                <p class="tagline">O melhor para o seu amigo de quatro patas</p>
+            </div>
+        </header>
+
+        <main>
+            <section class="about-section">
+                <h2>Nossa História e Propósito</h2>
+                <img src="Minha Equipe.jpg" alt="Equipe PetShop e Animais Felizes">
+                <p>No Petcare, nossa jornada começou com uma paixão inabalável por animais e o desejo de criar um espaço onde cada pet encontrasse cuidado e produtos de alta qualidade. Desde nossa fundação em 2023, crescemos impulsionados pela confiança de nossos clientes e seus fiéis companheiros.</p>
+                <p>Nossa missão é garantir o bem-estar e a saúde de cada animal, oferecendo uma seleção criteriosa de produtos e de rações premium a brinquedos divertidos e acessórios. Também dispomos de serviços especializados como banho e tosa profissional, orientações nutricionais e suporte em questões comportamentais, tudo para aprimorar a vida de cada pet.</p>
+                <p>Acreditamos que cada animal é único e merece tratamento personalizado. Nossa equipe é formada por profissionais qualificados e apaixonados, dedicados a oferecer um atendimento excepcional. Mais que um PetShop, somos uma comunidade de amantes de animais, sempre prontos para compartilhar conhecimentos e dar um carinho extra ao seu bichinho.</p>
+                <p>Convidamos você e seu pet a fazerem parte da nossa família. Venha nos visitar e descubra a diferença que a paixão e a dedicação podem fazer!</p>
+
+                <p style="margin-top: 20px; font-style: normal; color: #777;">
+                    Tá esperando o que para nos conhecer? Venha até uma de nossas unidades agora! Vai, não perca tempo! Seu pet vai amar, confia!
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>Seu amigo merece o melhor! Encontre tudo para ele em nosso PetShop. Oferecemos produtos de qualidade, atendimento especializado e um carinho que só quem ama pets entende.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/facebook-logo-5.png" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/Twitter-logo-1.png" alt="Twitter"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png" alt="Instagram"></a>
+            </div>
+            <p style="margin-top: 25px;">© 2025 PetShop. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - PetCare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos globais e de corpo para fundo GIF */
+        body {
+            font-family: 'Poppins', sans-serif; /* Usando Poppins como no Petcare.html */
+            margin: 0;
+            background-color: #333; /* Cor de fundo cinza escuro de fallback */
+            color: #333;
+            display: flex;
+            flex-direction: column; /* Altera para coluna para a nav ficar no topo */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+
+            /* --- Adicionado para o background GIF --- */
+            background-image: url('gift(3).gif'); /* Caminho para sua imagem GIF */
+            background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o fundo */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Fixa a imagem, para que ela não role com o conteúdo */
+            /* ------------------------------------------------ */
+            padding-top: 0; /* Remove padding-top se necessário para a nav */
+        }
+
+        /* Container do formulário de cadastro */
+        .signup-container {
+            background-color: #fff; /* Fundo branco para o formulário, garantindo legibilidade */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            margin-top: 20px; /* Espaço para a nav */
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+
+        .google-signup-button {
+            background-color: #db4437;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .google-signup-button:hover {
+            background-color: #c53929;
+        }
+
+        .google-icon {
+            font-size: 1.2em;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #777;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .separator:not(:empty)::before {
+            margin-right: .25em;
+        }
+
+        .separator:not(:empty)::after {
+            margin-left: .25em;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .additional-info {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .additional-info h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        /* --- Estilos da Navegação (copiado de Petcare.css) --- */
+        nav {
+            background-color: #333; /* Cor ao redor dos botões (fundo da nav) cinza escuro */
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%; /* Para a nav ocupar toda a largura */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%;
+            }
+            .signup-container {
+                width: 90%;
+                padding: 20px;
+            }
+            /* Ajustes responsivos para a nav */
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 15px;
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+        </ul>
+    </nav>
+
+    <div class="signup-container">
+        <div class="logo">
+            <img src="Logo.jpg" alt="Logo da Petcare">
+        </div>
+
+        <h1>Cadastro</h1>
+
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <div class="separator">OU</div>
+
+        <button class="google-signup-button">
+            <span class="google-icon">G</span>
+            <span>Continuar com o Google</span>
+        </button>
+
+        <div class="login-link">
+            Já tem uma conta? <a href="/login">Faça login</a>
+        </div>
+
+        <div id="signupError" class="error-message" style="display: none;">
+            Ocorreu um erro ao cadastrar. Por favor, tente novamente.
+        </div>
+
+        <div id="additionalInfoSection" class="additional-info" style="display: none;">
+            <h2>Informações do seu Pet</h2>
+            <form id="petInfoForm">
+                <div class="form-group">
+                    <label for="petType">Tipo de Pet:</label>
+                    <select id="petType" name="petType" required>
+                        <option value="">Selecione</option>
+                        <option value="cachorro">Cachorro</option>
+                        <option value="gato">Gato</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="petAge">Idade do Pet (anos):</label>
+                    <input type="number" id="petAge" name="petAge" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="petSize">Tamanho do Pet:</label>
+                    <select id="petSize" name="petSize">
+                        <option value="">Selecione</option>
+                        <option value="pequeno">Pequeno</option>
+                        <option value="medio">Médio</option>
+                        <option value="grande">Grande</option>
+                    </select>
+                </div>
+                <button type="submit">Concluir Cadastro</button>
+            </form>
+            <div id="petInfoError" class="error-message" style="display: none;">
+                Por favor, preencha as informações do seu pet.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('signupForm');
+            const signupErrorDiv = document.getElementById('signupError');
+            const googleSignupButton = document.querySelector('.google-signup-button');
+            const additionalInfoSection = document.getElementById('additionalInfoSection');
+            const petInfoForm = document.getElementById('petInfoForm');
+            const petInfoErrorDiv = document.getElementById('petInfoError');
+
+            signupForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const nome = document.getElementById('nome').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                console.log('Dados de Cadastro:');
+                console.log('Nome:', nome);
+                console.log('Email:', email);
+                console.log('Senha:', password);
+
+                if (email === 'erro@email.com') {
+                    signupErrorDiv.textContent = 'Este e-mail já está cadastrado ou ocorreu um erro no servidor.';
+                    signupErrorDiv.style.display = 'block';
+                } else {
+                    signupErrorDiv.style.display = 'none';
+                    signupForm.style.display = 'none';
+                    googleSignupButton.style.display = 'none';
+                    document.querySelector('.separator').style.display = 'none';
+                    document.querySelector('.login-link').style.display = 'none';
+
+                    additionalInfoSection.style.display = 'block';
+                }
+            });
+
+            googleSignupButton.addEventListener('click', function() {
+                console.log('Iniciar cadastro com o Google');
+            });
+
+            petInfoForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const petType = document.getElementById('petType').value;
+                const petAge = document.getElementById('petAge').value;
+                const petSize = document.getElementById('petSize').value;
+
+                console.log('Informações do Pet:');
+                console.log('Tipo:', petType);
+                console.log('Idade:', petAge);
+                console.log('Tamanho:', petSize);
+
+                if (!petType || !petAge || !petSize) {
+                    petInfoErrorDiv.textContent = 'Por favor, preencha todos os campos do pet.';
+                    petInfoErrorDiv.style.display = 'block';
+                } else {
+                    petInfoErrorDiv.style.display = 'none';
+                    console.log('Cadastro concluído com sucesso! Bem-vindo(a) à Petcare!');
+                    // window.location.href = '/area-do-usuario';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

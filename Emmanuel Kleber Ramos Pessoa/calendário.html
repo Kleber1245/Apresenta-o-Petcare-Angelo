@@ -1,0 +1,208 @@
+/* Estilos para o container principal do calendário */
+.calendar-container {
+    background-color: #333; /* Fundo cinza escuro */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Sombra mais proeminente e escura */
+    padding: 20px; 
+    width: 100%;
+    max-width: 340px; 
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    color: #e0e0e0; /* Texto claro */
+}
+
+/* Cabeçalho do calendário (Mês e Ano) */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; 
+    border-bottom: 1px solid #555; /* Borda mais escura */
+    padding-bottom: 10px;
+}
+
+.calendar-header h2 {
+    font-size: 1.6em; 
+    color: #f0f0f0; /* Texto quase branco */
+    margin: 0;
+    font-weight: 500;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Botões de navegação (anterior/próximo mês) */
+.nav-btn {
+    background-color: #555; /* Cinza médio para os botões */
+    color: white;
+    border: none;
+    padding: 8px 12px; 
+    border-radius: 6px; 
+    cursor: pointer;
+    font-size: 1em; 
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.nav-btn:hover {
+    background-color: #666; /* Cinza um pouco mais claro no hover */
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dias da semana */
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px; 
+    margin-bottom: 10px; 
+    text-align: center;
+    font-weight: 400;
+    color: #bbb; /* Cinza claro */
+    font-size: 0.9em; 
+}
+
+.calendar-weekdays div {
+    padding: 6px 0;
+    background-color: #444; /* Fundo cinza escuro para dias da semana */
+    border-radius: 4px;
+}
+
+/* Grade de dias do mês */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px; 
+    text-align: center;
+}
+
+/* Estilos para os dias individuais (tornando-os quadrados) */
+.calendar-days div {
+    padding: 0; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    font-weight: 400;
+    font-size: 1em; 
+    color: #e0e0e0; /* Texto claro para os dias */
+    background-color: #3a3a3a; /* Fundo ligeiramente mais claro que o container */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+    
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-days div::before {
+    content: '';
+    display: block;
+    padding-top: 100%; /* Isso faz a altura ser igual à largura, criando o quadrado */
+}
+
+/* Centraliza o número do dia dentro do quadrado */
+.calendar-days div span { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    height: 100%;
+}
+
+/* Efeito hover para os dias */
+.calendar-days div:hover {
+    background-color: #4CAF50; /* Verde PetCare para o hover */
+    color: white;
+    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Estilo para Sábados, Domingos e Feriados */
+.calendar-days div.holiday-weekend {
+    background-color: #2a2a2a; /* Cinza mais escuro */
+    color: #FF7043; /* Laranja para destaque */
+    font-weight: 500;
+}
+
+.calendar-days div.holiday-weekend:hover {
+    background-color: #FF8A65; /* Laranja mais claro no hover */
+    color: #2a2a2a;
+}
+
+/* Estilo para o dia atual */
+.calendar-days div.today {
+    background-color: #4CAF50; /* Verde PetCare para o dia atual */
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.5); /* Sombra verde */
+    border: 2px solid #81C784; /* Borda verde claro */
+}
+
+/* Se o dia de hoje for um feriado/final de semana, o estilo 'today' deve ter prioridade */
+.calendar-days div.today.holiday-weekend {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+/* Estilo para dias vazios (fora do mês) */
+.calendar-days div.empty {
+    background-color: #2a2a2a; /* Cinza bem escuro para dias vazios */
+    cursor: default;
+    color: #777; /* Texto mais apagado */
+    font-weight: 300;
+    box-shadow: none; 
+}
+
+.calendar-days div.empty:hover {
+    background-color: #2a2a2a;
+    color: #777;
+    transform: none; 
+}
+
+/* Estilo para dias com lembrete (originalmente era 'has-reminder', agora 'has-event' no Petcare.css) */
+/* Este estilo será sobrescrito ou complementado por .has-event no Petcare.css para unificar lembretes e agendamentos */
+.calendar-days div.has-reminder {
+    border: 2px solid #81C784; /* Borda verde claro para indicar lembrete */
+    box-shadow: 0 0 8px rgba(129, 199, 132, 0.6); /* Sombra sutil para destaque */
+}
+
+/* Ajuste se um dia com lembrete for também o dia de hoje */
+.calendar-days div.has-reminder.today {
+    border-color: #f0f0f0; /* Borda mais visível em branco se for hoje e tiver lembrete */
+}
+
+
+/* Responsividade para telas menores */
+@media (max-width: 500px) {
+    .calendar-container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.4em;
+    }
+
+    .nav-btn {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+
+    .calendar-weekdays,
+    .calendar-days {
+        gap: 4px; 
+    }
+
+    .calendar-days div {
+        font-size: 0.85em;
+        border-radius: 6px; 
+    }
+}
