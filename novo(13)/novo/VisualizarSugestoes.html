@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestões Recebidas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #333;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            background-image: url('gift(4).gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-top: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .suggestion-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestion-item {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .suggestion-item strong {
+            color: #333;
+        }
+
+        .suggestion-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .toggle-mask-button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .toggle-mask-button:hover {
+            background-color: #0056b3;
+        }
+
+        .masked {
+            filter: blur(4px);
+            transition: filter 0.3s ease;
+        }
+
+        .masked.revealed {
+            filter: blur(0);
+        }
+
+        .loading-message, .error-message {
+            text-align: center;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        /* --- Estilos da Navegação --- */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%;
+            }
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+            <li><a href="VisualizarSugestoes.html">Ver Sugestões (Admin)</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Sugestões Recebidas</h1>
+        <div id="loading" class="loading-message">Carregando sugestões...</div>
+        <div id="error" class="error-message" style="display: none;"></div>
+        <ul id="suggestionsList" class="suggestion-list">
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const suggestionsList = document.getElementById('suggestionsList');
+            const loadingMessage = document.getElementById('loading');
+            const errorMessage = document.getElementById('error');
+
+            function maskEmail(email) {
+                if (!email || email === 'N/A') return 'N/A';
+                const [localPart, domainPart] = email.split('@');
+                if (!localPart || !domainPart) return 'N/A';
+                // Mascara a maior parte do nome de usuário, deixando a primeira e a última letra
+                const maskedLocal = localPart.charAt(0) + '*'.repeat(Math.max(0, localPart.length - 2)) + (localPart.length > 1 ? localPart.charAt(localPart.length - 1) : '');
+                return `${maskedLocal}@${domainPart}`;
+            }
+
+            // A função maskName e o botão de toggle para nome foram removidos,
+            // pois o nome não será mais mascarado aqui.
+
+            function displaySuggestions() {
+                loadingMessage.style.display = 'none'; // Esconde mensagem de carregamento, pois os dados são locais
+                errorMessage.style.display = 'none';
+                suggestionsList.innerHTML = '';
+
+                const suggestions = JSON.parse(localStorage.getItem('suggestions')) || [];
+
+                if (suggestions.length === 0) {
+                    suggestionsList.innerHTML = '<li style="text-align: center; color: #666;">Nenhuma sugestão encontrada ainda.</li>';
+                } else {
+                    suggestions.forEach(sugestao => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'suggestion-item';
+
+                        const nameDiv = document.createElement('div');
+                        nameDiv.style.marginBottom = '5px';
+
+                        const nameLabel = document.createElement('span');
+                        // Exibe "Nome Completo" ou "Nome de Usuário" conforme salvo
+                        nameLabel.textContent = `${sugestao.tipoNome || 'Nome'}: `; 
+                        nameDiv.appendChild(nameLabel);
+
+                        const nameValue = document.createElement('strong');
+                        nameValue.textContent = sugestao.nome || 'Anônimo'; // Exibe o nome como ele foi salvo
+                        nameDiv.appendChild(nameValue);
+                        listItem.appendChild(nameDiv);
+
+
+                        const emailDiv = document.createElement('div');
+                        emailDiv.style.marginBottom = '10px';
+
+                        const emailLabel = document.createElement('span');
+                        emailLabel.textContent = `Email: `;
+                        emailDiv.appendChild(emailLabel);
+
+                        const emailValue = document.createElement('strong');
+                        emailValue.textContent = sugestao.email ? maskEmail(sugestao.email) : 'N/A';
+                        emailValue.classList.add('masked'); // Adiciona a classe masked para o blur
+                        emailValue.setAttribute('data-full-email', sugestao.email || 'N/A');
+                        emailDiv.appendChild(emailValue);
+
+                        const emailToggleButton = document.createElement('button');
+                        emailToggleButton.className = 'toggle-mask-button';
+                        emailToggleButton.textContent = 'Mostrar Email';
+                        emailToggleButton.onclick = () => {
+                            if (emailValue.classList.contains('revealed')) {
+                                emailValue.textContent = maskEmail(emailValue.getAttribute('data-full-email'));
+                                emailValue.classList.remove('revealed');
+                                emailToggleButton.textContent = 'Mostrar Email';
+                            } else {
+                                emailValue.textContent = emailValue.getAttribute('data-full-email');
+                                emailValue.classList.add('revealed');
+                                emailToggleButton.textContent = 'Mascarar Email';
+                            }
+                        };
+                        emailDiv.appendChild(emailToggleButton);
+                        listItem.appendChild(emailDiv);
+
+                        const suggestionParagraph = document.createElement('p');
+                        suggestionParagraph.innerHTML = `<strong>Sugestão:</strong> ${sugestao.sugestao}`;
+                        listItem.appendChild(suggestionParagraph);
+                        
+                        suggestionsList.appendChild(listItem);
+                    });
+                }
+            }
+
+            displaySuggestions();
+        });
+    </script>
+</body>
+</html>

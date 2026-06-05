@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestões</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #333;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            background-image: url('gift(4).gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding-top: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative; /* Para posicionar a mensagem de erro */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 44px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .input-feedback { /* Estilo para o feedback abaixo do input */
+            font-size: 0.85em;
+            margin-top: 5px;
+            padding-left: 2px;
+        }
+        .input-feedback.error {
+            color: red;
+        }
+        .input-feedback.info {
+            color: #007bff; /* Ou uma cor neutra para informações */
+        }
+
+        /* --- Estilos da Navegação --- */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background-color: #555;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            font-size: 0.8em;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 25px;
+            height: 25px;
+            line-height: 0;
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        /* --- Fim dos Estilos da Navegação --- */
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 2%;
+            }
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            nav ul li a {
+                width: 80%;
+                max-width: 150px;
+                height: auto;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            input[type="text"], input[type="email"], textarea, button[type="submit"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+            <li><a href="VisualizarSugestoes.html">Ver Sugestões (Admin)</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Envie sua Sugestão</h1>
+        <form id="suggestionForm">
+            <div class="form-group">
+                <label for="nome">Seu Nome (Opcional):</label>
+                <input type="text" id="nome" name="Nome">
+                <div id="nomeFeedback" class="input-feedback"></div> </div>
+            <div class="form-group">
+                <label for="email">Seu Email (Opcional):</label>
+                <input type="email" id="email" name="Email">
+            </div>
+            <div class="form-group">
+                <label for="sugestao">Sua Sugestão:</label>
+                <textarea id="sugestao" name="Sugestão" required></textarea>
+            </div>
+            <button type="submit">Enviar Sugestão</button>
+            <div id="formGlobalMessage" class=""></div> </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('suggestionForm');
+            const nomeInput = document.getElementById('nome');
+            const nomeFeedbackDiv = document.getElementById('nomeFeedback');
+            const formGlobalMessageDiv = document.getElementById('formGlobalMessage'); 
+
+            // Função para validar e formatar nome completo ou identificar como nome de usuário
+            function validateAndFormatName(inputName) {
+                if (!inputName) {
+                    return { type: 'Anônimo', value: 'Anônimo', isValid: true, message: '' };
+                }
+
+                const originalName = inputName; 
+                
+                // Regex para detectar presença de números ou pontuação (critério para Nome de Usuário)
+                const containsNumbersOrPunctuation = /[0-9!@#$%^&*()_+={}\[\]:;"'<>,.?/~`-]/g.test(inputName);
+
+                // Regex para Nome de Usuário (8+ caracteres, letras, números e pontuação)
+                const usernameStrictRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/~`-])[a-zA-Z0-9!@#$%^&*()_+={}\[\]:;"'<>,.?/~`-]{8,}$/;
+                
+                if (containsNumbersOrPunctuation) {
+                    // Se contém números ou pontuação, *deve* ser um Nome de Usuário
+                    if (usernameStrictRegex.test(inputName)) {
+                        return { type: 'Nome de Usuário', value: inputName, isValid: true, message: 'Reconhecido como Nome de Usuário.' };
+                    } else {
+                        // Contém números/pontuação, mas não atende aos requisitos mínimos de Nome de Usuário
+                        let errorMessage = 'Nome de Usuário inválido: Mínimo de 8 caracteres, contendo letras, números e ao menos um caractere de pontuação (Ex: Ritmo146!).';
+                        return { type: 'Inválido', value: originalName, isValid: false, message: errorMessage };
+                    }
+                }
+
+                // Se não contém números ou pontuação, tenta validar como Nome Completo
+                const parts = inputName.trim().split(/\s+/);
+                let formattedParts = [];
+                let allPartsValidCapitalization = true;
+
+                for (const part of parts) {
+                    const lowerPart = part.toLowerCase();
+                    // Exceções para "de", "da", "do", "das", "dos", "d'" (apenas se a palavra inteira for a exceção)
+                    if (['de', 'da', 'do', 'das', 'dos'].includes(lowerPart) && part.length === lowerPart.length) {
+                        formattedParts.push(lowerPart);
+                    } else if (lowerPart === "d'" && part.length === lowerPart.length) {
+                        formattedParts.push(lowerPart);
+                    } else {
+                        // Verifica se a parte segue a capitalização exigida: Primeira Maiúscula, resto minúscula
+                        if (part.charAt(0) === part.charAt(0).toUpperCase() && 
+                            part.slice(1) === part.slice(1).toLowerCase() && 
+                            part.length > 0) { // Garante que não é uma string vazia
+                            formattedParts.push(part);
+                        } else {
+                            allPartsValidCapitalization = false;
+                            break; // Se uma parte não seguir, não é um nome completo válido
+                        }
+                    }
+                }
+                
+                if (allPartsValidCapitalization) {
+                    return { type: 'Nome Completo', value: formattedParts.join(' '), isValid: true, message: 'Reconhecido como Nome Completo.' };
+                } else {
+                    // Não contém números/pontuação, mas não é um nome completo válido
+                    let errorMessage = 'Nome Completo inválido: Cada parte do nome (exceto "de", "d\'") deve iniciar com Letra Maiúscula e o restante minúscula (Ex: João Da Silva).';
+                    return { type: 'Inválido', value: originalName, isValid: false, message: errorMessage };
+                }
+            }
+
+            // Evento para validação em tempo real (quando o campo perde o foco)
+            nomeInput.addEventListener('blur', function() {
+                const rawNome = nomeInput.value.trim();
+                const validationResult = validateAndFormatName(rawNome);
+                
+                if (rawNome === '') { // Se o campo está vazio, limpa o feedback
+                    nomeFeedbackDiv.textContent = '';
+                    nomeFeedbackDiv.className = 'input-feedback';
+                    return;
+                }
+
+                if (!validationResult.isValid) {
+                    nomeFeedbackDiv.textContent = 'Erro: ' + validationResult.message;
+                    nomeFeedbackDiv.className = 'input-feedback error';
+                } else {
+                    nomeFeedbackDiv.textContent = validationResult.message;
+                    nomeFeedbackDiv.className = 'input-feedback info';
+                }
+            });
+
+            // Evento para limpar feedback quando o usuário digita novamente
+            nomeInput.addEventListener('input', function() {
+                nomeFeedbackDiv.textContent = '';
+                nomeFeedbackDiv.className = 'input-feedback';
+            });
+
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                const rawNome = nomeInput.value.trim();
+                const email = document.getElementById('email').value.trim();
+                const sugestao = document.getElementById('sugestao').value.trim();
+
+                formGlobalMessageDiv.textContent = ''; // Limpa mensagens anteriores
+
+                if (!sugestao) {
+                    formGlobalMessageDiv.textContent = 'Por favor, digite sua sugestão.';
+                    formGlobalMessageDiv.className = 'error-message';
+                    return;
+                }
+
+                // Valida o nome no momento do submit também
+                const processedName = validateAndFormatName(rawNome);
+                
+                if (!processedName.isValid) {
+                    formGlobalMessageDiv.textContent = 'Erro no nome: ' + processedName.message;
+                    formGlobalMessageDiv.className = 'error-message';
+                    // Também exibe no feedback do campo para clareza
+                    nomeFeedbackDiv.textContent = 'Erro: ' + processedName.message;
+                    nomeFeedbackDiv.className = 'input-feedback error';
+                    return;
+                }
+
+                // 1. Salvar a sugestão localmente
+                let suggestions = JSON.parse(localStorage.getItem('suggestions')) || [];
+                suggestions.push({
+                    nome: processedName.value, 
+                    tipoNome: processedName.type, 
+                    email: email || 'N/A',
+                    sugestao: sugestao
+                });
+                localStorage.setItem('suggestions', JSON.stringify(suggestions));
+
+                // 2. Tentar enviar por e-mail (com feedback sem redirecionar)
+                const subject = encodeURIComponent("Nova Sugestão do Site");
+                const body = encodeURIComponent(`Nome (${processedName.type}): ${processedName.value}\nEmail: ${email}\n\nSugestão:\n${sugestao}`);
+                const mailtoLink = `mailto:seuemail@example.com?subject=${subject}&body=${body}`;
+
+                try {
+                    const tempLink = document.createElement('a');
+                    tempLink.href = mailtoLink;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+
+                    formGlobalMessageDiv.textContent = 'Sugestão enviada e salva localmente! Uma tentativa de envio por e-mail foi realizada.';
+                    formGlobalMessageDiv.className = 'success-message';
+                } catch (e) {
+                    console.error("Erro ao tentar abrir o cliente de e-mail:", e);
+                    formGlobalMessageDiv.textContent = 'Sugestão salva localmente. Não foi possível iniciar o envio por e-mail automaticamente.';
+                    formGlobalMessageDiv.className = 'info-message';
+                }
+
+                form.reset();
+                nomeFeedbackDiv.textContent = ''; // Limpa o feedback do nome após o envio
+                nomeFeedbackDiv.className = 'input-feedback';
+            });
+        });
+    </script>
+</body>
+</html>

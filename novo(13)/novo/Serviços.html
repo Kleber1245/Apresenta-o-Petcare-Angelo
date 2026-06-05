@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços para Cachorros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Petcare.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Fundo cinza escuro de fallback */
+            color: #333;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza o container */
+            text-align: left; /* Mantido para alinhamento geral à esquerda */
+            min-height: 100vh; /* Garante que o body ocupa a altura total da viewport */
+            box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+
+            /* --- Adicionado para o background GIF --- */
+            background-image: url('gift(3).gif'); /* Caminho para sua imagem GIF */
+            background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o fundo */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            background-attachment: fixed; /* Fixa a imagem, para que ela não role com o conteúdo */
+            /* ------------------------------------------------ */
+        }
+
+        /* Estilos para a Navegação (nav) - Copiados do Petcare.html */
+        nav {
+            background-color: transparent; /* Fundo transparente para o container da navegação */
+            padding: 0; /* Remove todo o padding do container nav para que ele não apareça */
+            box-shadow: none; /* Remove a sombra do container */
+            width: 100%; /* Ocupa a largura total disponível */
+            border-radius: 0; /* Remove o arredondamento do container */
+            margin: 0; /* Remove a margem para afastar das bordas da tela */
+        }
+
+        nav ul {
+            list-style: none; /* Remove marcadores de lista */
+            margin: 0 auto; /* Centraliza o UL e remove margens padrão */
+            padding: 5px 0; /* Adiciona um padding sutil ao UL para criar a faixa preta de fundo */
+            background-color: black; /* Fundo preto para a área dos botões (o UL) */
+            display: flex; /* Usa flexbox para alinhar os itens horizontalmente */
+            justify-content: center; /* Centraliza os itens na navegação */
+            flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+            gap: 5px; /* Espaçamento entre os botões */
+            max-width: 1200px; /* Limita a largura da faixa preta dos botões */
+        }
+
+        nav ul li a {
+            background-color: black; /* Fundo dos botões preto */
+            color: #ffffff; /* Texto dos botões branco */
+            text-decoration: none; /* Remove sublinhado dos links */
+            font-weight: 600; /* Peso da fonte mais forte para destaque */
+            padding: 5px 10px; /* Reduzido para botões menores */
+            border-radius: 4px; /* Cantos levemente arredondados */
+            border: 1px solid #444; /* Borda cinza escuro (sem verde) */
+            transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves para hover */
+            display: inline-block; /* Permite que o padding e a transição funcionem bem */
+            text-transform: uppercase; /* Texto em maiúsculas para um visual moderno */
+            letter-spacing: 0.5px; /* Espaçamento entre letras */
+            font-size: 0.8em; /* Reduzido para um tamanho de fonte menor */
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #1a1a1a; /* Um preto um pouco mais claro no hover */
+            border-color: #666; /* Borda fica um cinza mais claro no hover */
+            transform: translateY(-0.5px); /* Efeito de "levantar" mais sutil */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); /* Sombra mais suave no hover */
+        }
+
+        /* Media Queries para Responsividade da Navegação (copiados do Petcare.html) */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0; /* Garante que o nav não tenha padding */
+                margin: 0;
+            }
+            nav ul {
+                flex-direction: column; /* Empilha os itens verticalmente em telas pequenas */
+                align-items: center; /* Centraliza os itens empilhados */
+                gap: 5px; /* Espaçamento ajustado */
+                padding: 5px 0; /* Mantém o padding do UL para o fundo preto */
+            }
+
+            nav ul li a {
+                width: 90%; /* Ocupa mais largura em telas menores */
+                max-width: 180px; /* Limita a largura máxima */
+                padding: 8px 12px; /* Ajusta o padding para facilitar o toque */
+                font-size: 0.8em; /* Reduzido para telas menores */
+                text-align: center; /* Centraliza o texto */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0; /* Garante que o nav não tenha padding */
+            }
+            nav ul {
+                padding: 5px 0; /* Mantém o padding do UL para o fundo preto */
+            }
+
+            nav ul li a {
+                font-size: 0.75em; /* Diminui um pouco mais o tamanho da fonte */
+                padding: 6px 10px;
+            }
+        }
+
+        /* Estilos do Servicos.html original, mantidos */
+        .container {
+            max-width: 1200px;
+            width: 60%; /* Recuo aumentado em +20% (total de 40%, ou seja, 20% de cada lado) */
+            margin: 0 auto;
+            padding: 0;
+            background-color: white; /* Fundo branco para o conteúdo, garantindo legibilidade */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 0;
+            text-align: center; /* Mantido para centralizar logo e navegação */
+            border-radius: 0;
+            margin-bottom: 0;
+            background-color: #fff;
+        }
+
+        header .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 20px 0 0;
+        }
+
+        header .logo img {
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        header .tagline {
+            font-size: 1.3em;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 0;
+        }
+
+        main {
+            padding-bottom: 80px;
+            background-color: #fff; /* Fundo branco para o conteúdo principal */
+            border-radius: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .servicos-destaque {
+            padding: 80px 0;
+            background-color: #fff;
+            border-radius: 0;
+        }
+
+        .servicos-destaque h2 {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+            text-align: center; /* Mantido para centralizar o título principal "Nossos Serviços" */
+        }
+
+        .servicos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Mantido para centralizar os cards no grid */
+            gap: 30px;
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        .servico-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: left; /* Alterado para alinhar o texto do card à esquerda */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            width: 320px;
+            margin-bottom: 30px;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .servico-card img {
+            height: 250px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .servico-card h3 {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-align: center; /* Centralizado para o título do card */
+        }
+
+        .servico-card p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.7;
+            text-align: left; /* Alinhado à esquerda */
+            margin-bottom: 20px;
+        }
+
+        .servico-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+            text-align: left; /* Alinhado à esquerda */
+        }
+
+        .servico-card ul li {
+            margin-bottom: 5px;
+            font-size: 1em;
+            color: #666;
+        }
+
+        .servico-card button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: block; /* Para que o margin: auto funcione */
+            margin: 0 auto; /* Centraliza o botão */
+        }
+
+        .servico-card button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center; /* Mantido para centralizar o conteúdo do rodapé */
+            padding: 40px 0;
+            font-size: 0.95em;
+            border-top: 1px solid #495f75;
+            margin-top: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+            text-align: center; /* Centraliza o texto do parágrafo */
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            opacity: 0.8;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .social-links img {
+            height: 35px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                width: 70%;
+            }
+
+            .servicos-grid {
+                gap: 20px;
+            }
+
+            .servico-card {
+                width: 45%;
+                min-width: 280px;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+                padding: 0;
+            }
+
+            header {
+                padding: 0;
+            }
+
+            header .logo img {
+                height: 70px;
+            }
+
+            header h1 {
+                font-size: 3em;
+            }
+
+            .servicos-destaque h2 {
+                font-size: 2.5em;
+            }
+
+            .servico-card {
+                width: 90%;
+                margin: 20px auto 30px;
+            }
+
+            .app-links-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .app-links img {
+                height: 60px;
+            }
+
+            footer {
+                padding: 30px 10px;
+            }
+
+            footer p {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header .tagline {
+                font-size: 1.2em;
+            }
+
+            .servicos-destaque h2 {
+                font-size: 2.2em;
+            }
+
+            .servico-card img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegação com os botões, posicionada no topo da página, fora do header -->
+    <nav>
+        <ul>
+            <li><a href="Petcare.html">Página Inicial</a></li>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+            <li><a href="Sobre Nós.html">Sobre Nós</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="Logo.jpg" alt="Logotipo PetShop">
+                <h1>PetShop</h1>
+                <p class="tagline">O melhor para o seu amigo de quatro patas</p>
+            </div>
+        </header>
+
+        <main>
+            <section id="servicos" class="servicos-destaque">
+                <h2>Nossos Serviços</h2>
+                <div class="servicos-grid">
+                    <div class="servico-card">
+                        <img src="banho e tosa.webp" alt="Banho e Tosa">
+                        <h3>Banho e Tosa</h3>
+                        <p>Serviço completo de higiene e estética para o seu pet.</p>
+                        <ul>
+                            <li>Banho com produtos específicos</li>
+                            <li>Tosa padrão da raça ou personalizada</li>
+                            <li>Secagem e escovação</li>
+                            <li>Limpeza de ouvidos e corte de unhas</li>
+                        </ul>
+                        <button class="agendar-btn" data-service="Banho e Tosa">Agendar Serviço</button>
+                    </div>
+                    <div class="servico-card">
+                        <img src="consulta veterinária.jpg" alt="Consulta Veterinária">
+                        <h3>Consulta Veterinária</h3>
+                        <p>Atendimento veterinário completo para cuidar da saúde do seu pet.</p>
+                        <ul>
+                            <li>Consultas de rotina e check-up</li>
+                            <li>Vacinação e vermifugação</li>
+                            <li>Atendimento de emergência</li>
+                            <li>Exames laboratoriais e de imagem</li>
+                        </ul>
+                        <button class="agendar-btn" data-service="Consulta Veterinária">Agendar Serviço</button>
+                    </div>
+                    <div class="servico-card">
+                        <img src="adestramento.webp" alt="Adestramento">
+                        <h3>Adestramento</h3>
+                        <p>Programas de adestramento para todas as idades e raças.</p>
+                        <ul>
+                            <li>Adestramento básico e avançado</li>
+                            <li>Correção de comportamento</li>
+                            <li>Socialização</li>
+                            <li>Adestramento em grupo e individual</li>
+                        </ul>
+                        <button class="agendar-btn" data-service="Adestramento">Agendar Serviço</button>
+                    </div>
+                    <div class="servico-card">
+                        <img src="Pet sitter.jpg" alt="Pet Sitter">
+                        <h3>Pet Sitter</h3>
+                        <p>Serviço de cuidados para o seu pet no conforto da sua casa.</p>
+                        <ul>
+                            <li>Alimentação e água fresca</li>
+                            <li>Passeios e brincadeiras</li>
+                            <li>Administração de medicamentos</li>
+                            <li>Cuidados especiais conforme necessidade</li>
+                        </ul>
+                        <button class="agendar-btn" data-service="Pet Sitter">Agendar Serviço</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 PetShop. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/facebook-logo-5.png" alt="Facebook"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2014/09/Twitter-logo-1.png" alt="Twitter"></a>
+                <a href="#" target="_blank"><img src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo.png" alt="Instagram"></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const agendarButtons = document.querySelectorAll('.agendar-btn');
+
+            agendarButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceType = this.dataset.service; // Pega o tipo de serviço do atributo data-service
+                    sessionStorage.setItem('selectedServiceType', serviceType); // Armazena em sessionStorage
+                    window.location.href = 'Agendamentos.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

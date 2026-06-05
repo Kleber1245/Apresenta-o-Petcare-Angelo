@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navegação PetCare</title>
+    <!-- Opcional: Se você quiser que o Botoes.html possa ser visualizado sozinho com o mesmo estilo de fonte -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos para o corpo do Botoes.html, para centralizar o conteúdo quando visualizado isoladamente */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Garante que o corpo ocupe a altura total da tela */
+            background-color: #f0f0f0; /* Fundo claro para contrastar com a nav escura */
+        }
+
+        /* Estilos para a Navegação (nav) - Integrados diretamente aqui */
+        nav {
+            background-color: transparent; /* Fundo transparente para o container da navegação */
+            padding: 0; /* Remove todo o padding do container nav para que ele não apareça */
+            box-shadow: none; /* Remove a sombra do container */
+            position: sticky; 
+            top: 0;
+            z-index: 1000; 
+            width: 100%; /* Ocupa a largura total disponível */
+            /* max-width removido daqui para ser aplicado ao ul */
+            border-radius: 0; /* Remove o arredondamento do container */
+            margin: 0; /* Remove a margem para afastar das bordas da tela */
+        }
+
+        nav ul {
+            list-style: none; /* Remove marcadores de lista */
+            margin: 0 auto; /* Centraliza o UL e remove margens padrão */
+            padding: 5px 0; /* Adiciona um padding sutil ao UL para criar a faixa preta de fundo */
+            background-color: black; /* Fundo preto para a área dos botões (o UL) */
+            display: flex; /* Usa flexbox para alinhar os itens horizontalmente */
+            justify-content: center; /* Centraliza os itens na navegação */
+            flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+            gap: 5px; /* Espaçamento entre os botões */
+            max-width: 1200px; /* Limita a largura da faixa preta dos botões */
+        }
+
+        nav ul li a {
+            background-color: black; /* Fundo dos botões preto */
+            color: #ffffff; /* Texto dos botões branco */
+            text-decoration: none; /* Remove sublinhado dos links */
+            font-weight: 600; /* Peso da fonte mais forte para destaque */
+            padding: 5px 10px; /* Reduzido para botões menores */
+            border-radius: 4px; /* Cantos levemente arredondados */
+            border: 1px solid #444; /* Borda cinza escuro (sem verde) */
+            transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves para hover */
+            display: inline-block; /* Permite que o padding e a transição funcionem bem */
+            text-transform: uppercase; /* Texto em maiúsculas para um visual moderno */
+            letter-spacing: 0.5px; /* Espaçamento entre letras */
+            font-size: 0.8em; /* Reduzido para um tamanho de fonte menor */
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #1a1a1a; /* Um preto um pouco mais claro no hover */
+            border-color: #666; /* Borda fica um cinza mais claro no hover */
+            transform: translateY(-0.5px); /* Efeito de "levantar" mais sutil */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); /* Sombra mais suave no hover */
+        }
+
+        /* Media Queries para Responsividade da Navegação */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0; /* Garante que o nav não tenha padding */
+                margin: 0;
+            }
+            nav ul {
+                flex-direction: column; /* Empilha os itens verticalmente em telas pequenas */
+                align-items: center; /* Centraliza os itens empilhados */
+                gap: 5px; /* Espaçamento ajustado */
+                padding: 5px 0; /* Mantém o padding do UL para o fundo preto */
+            }
+
+            nav ul li a {
+                width: 90%; /* Ocupa mais largura em telas menores */
+                max-width: 180px; /* Limita a largura máxima */
+                padding: 8px 12px; /* Ajusta o padding para facilitar o toque */
+                font-size: 0.8em; /* Reduzido para telas menores */
+                text-align: center; /* Centraliza o texto */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0; /* Garante que o nav não tenha padding */
+            }
+            nav ul {
+                padding: 5px 0; /* Mantém o padding do UL para o fundo preto */
+            }
+
+            nav ul li a {
+                font-size: 0.75em; /* Diminui um pouco mais o tamanho da fonte */
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Petcare.html">Página Inicial</a></li>
+            <li><a href="Produtos.html">Produtos</a></li>
+            <li><a href="Serviços.html">Serviço</a></li>
+            <li><a href="Agendamentos.html">Agendamento</a></li>
+            <li><a href="Carrinho de Compras.html">Carrinho de Compras</a></li>
+            <li><a href="Sugestões.html">Sugestões</a></li>
+            <li><a href="Contatos.html">Contatos</a></li>
+            <li><a href="Login.html">Login</a></li>
+            <li><a href="Cadastro.html">Cadastrar Conta</a></li>
+            <li><a href="Sobre Nós.html">Sobre Nós</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
